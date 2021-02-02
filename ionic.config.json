@@ -1,0 +1,7 @@
+{
+  "name": "cloneTT",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

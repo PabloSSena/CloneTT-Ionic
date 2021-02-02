@@ -1,9 +1,14 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>intro</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <ion-slides pager='true'>
+   <!-- Slide 1 -->
+    <ion-slide>
+      <ion-text color='dark'>
+        <img src="https://wallpaperaccess.com/full/388107.jpg">
+        <h1>Ola, Seja Bem Vindo!</h1>
+        <p>Esse é um app feito com ionic</p>
+        <ion-button (click)="next()" fill="outline" color='dark'>Próximo</ion-button>
+      </ion-text>
+    </ion-slide>
+  </ion-slides>
 
 </ion-content>
