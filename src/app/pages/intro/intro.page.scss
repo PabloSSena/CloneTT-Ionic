@@ -1,3 +1,13 @@
+ion-content{
+    --background: grey;
+}
+
+ion-slides {
+    height: 100%;
+    --bullet-background-active: #fff;
+    --bullet-background: #000;
+}
+
 img{
     height: 50%;
     width: 60%;
