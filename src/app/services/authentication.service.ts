@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Plugins } from '@capacitor/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, from, Observable } from 'rxjs';
+import {map,switchMap, tap} from 'rxjs/operators'
 const {Storage} = Plugins;
 const TOKENKEY ="my_token";
 @Injectable({
@@ -27,7 +28,20 @@ export class AuthenticationService {
      }
    }
 
-   login(credentials:{email,password}) {
+   login(credentials:{email,password}): Observable<any> {
+    return this.http.post(`https://reqres.in/api/login`, credentials).pipe(
+      map((data:any) => data.token),
+      switchMap(token => {
+        return from(Storage.set({key:TOKENKEY, value:this.token}))
+      }),
+      tap(_ => {
+        this.isAuthenticated.next(true);
+      })
+    )
+   }
 
+   logout(): Promise<void>{
+     this.isAuthenticated.next(false);
+     return Storage.remove({key:TOKENKEY})
    }
 }
